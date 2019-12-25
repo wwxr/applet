@@ -1,0 +1,68 @@
+<wxs src="filter.wxs" module="filters"/>
+<view>
+
+  <view class='topExpress'>
+
+    <view class='topExpress-left'>
+      <image src='../../images/wl.jpg' style='width:80rpx;height:80rpx;border-radius:50%;'></image>
+    </view>
+    <view class='topExpress-right' wx:for="{{orderinfo.shippers}}" wx:key="{{item}}">
+      <view class='topExpress-right-middle'>运单号：{{orderinfo.logisticCode}}</view>
+      <view class='topExpress-right-top' >物流名称：{{item.shipperName}}</view>
+      <block wx:if="{{orderinfo.state==3}}">
+        <view class='topExpress-right-bottom' wx:if="{{index==0}}">物流状态: 已签收</view>
+        </block>
+        <block wx:if="{{orderinfo.state==2}}">
+        <view class='topExpress-right-bottom' wx:if="{{index==0}}">物流状态: 在途中</view>
+        </block>
+        <block wx:if="{{orderinfo.state==4}}">
+        <view class='topExpress-right-bottom' wx:if="{{index==0}}">物流状态: 问题件</view>
+        </block>
+    </view>
+
+  </view>
+
+  <view class='express-container'>
+
+    <view class='express-item' wx:for="{{ordertrace}}" wx:key="index">
+
+      <view class='express-left-date'>
+        <view class="time_class">{{filters.formatDate(item.acceptTime)}}</view>
+        <!-- <view>10:30</view> -->
+      </view>
+
+      <!-- 左边子容器 -->
+      <view class='express-middle-axis'>
+        <!-- 显示顶部收的圆点 -->
+        <block wx:if="{{orderinfo.state==3}}">
+        <view class='dot-shou' wx:if="{{index==0}}">已签收</view>
+        </block>
+        <block wx:if="{{orderinfo.state==2}}">
+        <view class='dot-shou' wx:if="{{index==0}}">在途中</view>
+        </block>
+        <block wx:if="{{orderinfo.state==4}}">
+        <view class='dot-shou' wx:if="{{index==0}}">问题件</view>
+        </block>
+        <!-- 正在进行的时间轴上半个时间线 -->
+        <view class='online-top-closing'></view>
+        <!-- 正在进行的时间轴点 -->
+        <view class='dot-closing'></view>
+        <!-- 正在进行的时间轴下半个时间线 -->
+        <view class='online-bottom'></view>
+        <!-- 显示尾部的圆点 -->
+        <view class='dot-closing' wx:if="{{index==ordertrace.length - 1}}"></view>
+      </view>
+
+      <!-- 右边子容器 -->
+      <view class='express-right'>
+      <block wx:if="{{orderinfo.state==3}}">
+        <!-- <view class='express-statusing'>已签收</view> -->
+      </block>
+        <view class='express-status-address'>{{item.acceptStation}}</view>
+      </view>
+
+    </view>
+
+  </view>
+
+</view>

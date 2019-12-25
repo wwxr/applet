@@ -1,0 +1,7 @@
+<view class='search_history' wx:if="{{isShow}}">
+        <view class='history_title'>最近搜索</view>
+        <view class='history_item' wx:for="{{searchRecord}}" wx:key="{{index}}" wx:for-item="hisItem">
+          <text bindtap='search_his' data-his="{{hisItem}}">{{hisItem}}</text>
+        </view>
+        <view class='history_title clear' bindtap='clear_search'>清空搜索历史</view>
+</view>

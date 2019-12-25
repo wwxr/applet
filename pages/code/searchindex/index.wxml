@@ -1,0 +1,19 @@
+<view class="page">
+    <view class="search_name">
+        <view class="sub-title">请输入商品名称</view>
+        <wux-search-bar  clear controlled  bind:blur="onBlur" bind:clear="onClear" bind:confirm="searchBox"  value="{{ value }}" bind:change="onChange" bind:cancel="onCancel" bind:clear="onClear" />
+        <!-- <wux-search-bar clear show-cancel value="{{ value }}" controlled placeholder="Search" bind:change="onChange" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" bind:cancel="onCancel" /> -->
+    </view>
+
+    <!-- <view class="search_history">
+        <view class="page__title">历史记录</view>
+        <view class="page__desc">搜索栏</view>
+    </view> -->
+    <view class='search_history' wx:if="{{isShow}}">
+        <view class='history_title'>最近搜索</view>
+        <view class='history_item' wx:for="{{searchRecord}}" wx:key="{{index}}" wx:for-item="item">
+          <text bindtap='search_his' data-his="{{item}}">{{item}}</text>
+        </view>
+        <view class='history_title clear' bindtap='clear_search'>清空搜索历史</view>
+    </view>
+</view>
